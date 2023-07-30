@@ -9,8 +9,9 @@ public class Menu {
 
     public static int seleccion;
     public static Ahorcado ahorcado = new Ahorcado();
+    public static Scanner entrada = new Scanner(System.in);
 
-    public static void menuInicio(Scanner entrada) {
+    public static void menuInicio() {
         System.out.println("               Bienvenido elija elija el juego              ");
         System.out.println("************************************************************");
         System.out.println("1) Ahorcado");
@@ -19,15 +20,25 @@ public class Menu {
         System.out.println("4) Salir.");
         System.out.println("Selecione entre 1-4");
         
-        seleccion = entrada.nextInt();
-        opcionesPrincipales(seleccion, entrada);
+        try {
+            seleccion = entrada.nextInt();
+            entrada.nextLine();
+            opcionesPrincipales(seleccion);
+        } catch (Exception e) {
+            System.out.println("Ingrese valores correctos");
+            entrada.nextLine();
+            menuInicio();
+        }
+        
 
     }
 
-    public static void opcionesPrincipales(int seleccion, Scanner entrada) {
-        switch (seleccion) {
+    public static void opcionesPrincipales(int seleccion ) {
+        
+            switch (seleccion) {
             case 1:
-                AhorcadoJugabilidad.inicioAhorcado(entrada);
+                entrada.reset();
+                AhorcadoJugabilidad.inicioAhorcado();
                 break;
             case 2:
                 System.out.println("*******Basquetball*******");
@@ -40,50 +51,60 @@ public class Menu {
                 System.exit(1);
                 break;        
             default:
-                menuInicio(entrada);
+                menuInicio();
                 break;
         }
+        
+        
     }
 
-    public static void menuIntermedio(Scanner entrada) {
+    public static void menuIntermedio() {
         System.out.println("1) Volver al Inicio");
         System.out.println("2) Salir.");
         System.out.println("Selecione entre 1-2");
         
         seleccion = entrada.nextInt();
-        opcionesSecundarias(seleccion, entrada);
+        opcionesSecundarias(seleccion);
     }
     
-     public static void opcionesSecundarias(int seleccion, Scanner entrada) {
+     public static void opcionesSecundarias(int seleccion) {
         switch (seleccion) {
             case 1:
-                menuInicio(entrada);
+                menuInicio();
                 break;
             case 2:
                 System.out.println("*******Saliendo*******");
                 break;
             default:
                 System.out.println("*******Ingrese Valores correctos********");
-                menuIntermedio(entrada);
+                menuIntermedio();
                 break;
         }
     }
 
-    public static void menuFinal(Scanner entrada) {
+    public static void menuFinal() {
         System.out.println("1) Volver a jugar");
         System.out.println("2) Volver a elegir");
         System.out.println("3) Salir");
         System.out.println("Selecione entre 1-3");
+            Scanner entradanueva = new Scanner(System.in);
+        try {
+            seleccion = entradanueva.nextInt();
+            entradanueva.nextLine();
+            opcionesFinales(seleccion);
+        } catch (Exception e) {
+            System.out.println("*******Ingrese Valores correctos********");
+            menuFinal();
+        }
         
-        seleccion = entrada.nextInt();
-        opcionesFinales(seleccion, entrada);
     }
 
-    public static void opcionesFinales(int juego, Scanner entrada) {
+    public static void opcionesFinales(int juego) {
         switch (seleccion) {
             case 1:
                 if(juego == 1){
-                    AhorcadoJugabilidad.inicioAhorcado(entrada);
+                    entrada.reset();
+                    AhorcadoJugabilidad.inicioAhorcado();
                     break;
                 }
                 if (juego == 2) {
@@ -95,7 +116,7 @@ public class Menu {
                 System.out.println("*********Juego no existente***********");
                 break;
             case 2:
-                menuInicio(entrada);
+                menuInicio();
                 break;
             case 3:
                 System.out.println("*******Saliendo*******");
@@ -103,7 +124,7 @@ public class Menu {
                 break;
             default:
                 System.out.println("*******Ingrese Valores correctos********");
-                menuFinal(entrada);
+                menuFinal();
                 break;
         }
     }

@@ -12,18 +12,19 @@ public class AhorcadoJugabilidad {
     public static String mostrarenpantalla = "";
     public static int numerrores = 0;
     public static boolean valor;
+    public static Scanner entrada = new Scanner(System.in);
 
-    public static void inicioAhorcado(Scanner entrada) {
+    public static void inicioAhorcado() {
         try {
             reiniciarVariables();
             Ahorcado.Jugador1(entrada);
             palabra = entrada.next();
             entrada.nextLine();
             System.out.println("");
-            jugar(entrada);
+            jugar();
         } catch (Exception e) {
             System.out.println("\n*************Ingrese valores numericos correctos*********\n");
-            inicioAhorcado(entrada);
+            inicioAhorcado();
         }
         
 
@@ -52,7 +53,7 @@ public class AhorcadoJugabilidad {
         }
     }
 
-    public static void estados(Scanner entrada) {
+    public static void estados() {
         if (!valor && palabraingresada != '\0') {
             System.out.println("***La letra no esta en la pala1bra.**");
             System.out.println("");
@@ -61,7 +62,7 @@ public class AhorcadoJugabilidad {
 
         if (!mostrarenpantalla.equals(palabra)) {
             palabraingresada = entrada.next().charAt(0);
-            jugar(entrada);
+            jugar();
         }
 
         if (mostrarenpantalla.equals(palabra) && numerrores < 8) {
@@ -70,11 +71,20 @@ public class AhorcadoJugabilidad {
             System.out.println("*********************");
             System.out.println("*Felicidades ganaste*");
             System.out.println("*********************");
-            Menu.menuFinal(entrada);
+            try {
+                entrada.nextLine();
+
+                Menu.menuFinal();
+            } catch (Exception e) {
+                System.out.println("Ingrese valores correctos ");
+                entrada.nextLine();
+                Menu.menuFinal();
+            }
+            
         }
     }
 
-    public static void calcularPalabras(Scanner entrada) {
+    public static void calcularPalabras( ) {
 
         Ahorcado.pantallas(numerrores);
         espacios();
@@ -83,22 +93,23 @@ public class AhorcadoJugabilidad {
         System.out.println("La palabra contiene : " + palabra.length() + " letras");
         System.out.println(mostrarenpantalla);
         System.out.println("");
-        estados(entrada);
+        estados();
 
     }
 
-    public static void jugar(Scanner entrada) {
+    public static void jugar( ) {
 
         while (numerrores < 8) {
 
-            calcularPalabras(entrada);
+            calcularPalabras();
 
         }
 
         if (numerrores == 8) {
             numerrores = 9;
             System.out.println("Perdiste");
-            Menu.menuFinal(entrada);
+            entrada.reset();
+            Menu.menuFinal();
         }
     }
 
