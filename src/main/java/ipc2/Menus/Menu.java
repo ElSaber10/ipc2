@@ -3,6 +3,7 @@ package ipc2.Menus;
 import java.util.Scanner;
 
 import ipc2.Juegos.Ahorcado.Ahorcado;
+import ipc2.Juegos.Ahorcado.AhorcadoJugabilidad;
 
 public class Menu {
 
@@ -26,8 +27,7 @@ public class Menu {
     public static void opcionesPrincipales(int seleccion, Scanner entrada) {
         switch (seleccion) {
             case 1:
-                System.out.println("*******Ahorcado*******");
-                Ahorcado.inicioAhorcado(entrada);
+                AhorcadoJugabilidad.inicioAhorcado(entrada);
                 break;
             case 2:
                 System.out.println("*******Basquetball*******");
@@ -83,7 +83,7 @@ public class Menu {
         switch (seleccion) {
             case 1:
                 if(juego == 1){
-                    Ahorcado.inicioAhorcado(entrada);
+                    AhorcadoJugabilidad.inicioAhorcado(entrada);
                     break;
                 }
                 if (juego == 2) {
