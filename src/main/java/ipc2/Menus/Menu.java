@@ -96,7 +96,7 @@ public class Menu {
             System.out.println("*******Ingrese Valores correctos********");
             menuFinal();
         }
-        
+        entradanueva.close();
     }
 
     public static void opcionesFinales(int juego) {
