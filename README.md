@@ -21,3 +21,4 @@ Trabajo realizado por:
 ### **_Trabajando con GitHub desde terminal de IntelliJ IDEA_**
 
 ![img_3.png](img_3.png)
+![img_4.png](img_4.png)
