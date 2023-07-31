@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 import ipc2.Juegos.Ahorcado.Ahorcado;
 import ipc2.Juegos.Ahorcado.AhorcadoJugabilidad;
+import ipc2.Juegos.Cartas.Cartas;
 
 public class Menu {
 
     public static int seleccion;
     public static Ahorcado ahorcado = new Ahorcado();
+    public static Cartas jCartas = new Cartas();
     public static Scanner entrada = new Scanner(System.in);
 
     public static void menuInicio() {
@@ -45,6 +47,11 @@ public class Menu {
                 break;
             case 3:
                 System.out.println("*******Cartas*******");
+                Scanner scanner = new Scanner(System.in);
+                Cartas.ApostarEntreCartasGame game = new Cartas.ApostarEntreCartasGame();
+                System.out.println("Ingrese el dinero que tiene");
+                int dineroJugador = scanner.nextInt();
+                game.startGame(dineroJugador);
                 break;
             case 4:
                 System.out.println("*******Saliendo*******");

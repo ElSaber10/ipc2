@@ -3,7 +3,7 @@ package ipc2.Juegos.Cartas;
 import java.util.Random;
 import java.util.Scanner;
 
-public class cartas {
+public class Cartas {
     public static class ApostarEntreCartasGame {
         private static int dinero_inicial ; // El valor lo ajusta el jugador desde main
         private static final int Valor_maximo_carta = 13; // El valor más alto de las cartas en la baraja
