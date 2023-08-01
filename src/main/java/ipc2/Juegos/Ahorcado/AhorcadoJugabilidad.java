@@ -14,10 +14,15 @@ public class AhorcadoJugabilidad {
     public static boolean valor;
     public static Scanner entrada = new Scanner(System.in);
 
+    /**
+     * 
+     * Funcion de iniciar el juego y su jugabilidad
+     * 
+     */
     public static void inicioAhorcado() {
         try {
             reiniciarVariables();
-            Ahorcado.Jugador1(entrada);
+            Ahorcado.Jugador1();
             palabra = entrada.next();
             entrada.nextLine();
             System.out.println("");
@@ -30,6 +35,9 @@ public class AhorcadoJugabilidad {
 
     }
 
+    /**
+     * Establecer las valiables con valores de inicio
+     */
     public static void reiniciarVariables() {
         palabra = "";
         palabraingresada = '\0';
@@ -37,6 +45,9 @@ public class AhorcadoJugabilidad {
         numerrores = 0;
     }
 
+    /**
+     * Sirve para mostrar la plabras que coinciden
+     */
     public static void letrasEncontradas() {
         valor = false;
         for (int i = 0; i < palabra.length(); i++) {
@@ -47,12 +58,19 @@ public class AhorcadoJugabilidad {
         }
     }
 
+
+    /**
+     * Sirve para generar un espacio de la cantidad de letras que contiene la letra a adivinar 
+     */
     public static void espacios() {
         for (int i = 0; i < palabra.length(); i++) {
             mostrarenpantalla += "_";
         }
     }
 
+    /**
+     * Estados en los que el jugador puede estar durante la partida
+     */
     public static void estados() {
         if (!valor && palabraingresada != '\0') {
             System.out.println("***La letra no esta en la pala1bra.**");
@@ -62,6 +80,7 @@ public class AhorcadoJugabilidad {
 
         if (!mostrarenpantalla.equals(palabra)) {
             palabraingresada = entrada.next().charAt(0);
+            opciones();
             jugar();
         }
 
@@ -74,17 +93,20 @@ public class AhorcadoJugabilidad {
             try {
                 entrada.nextLine();
 
-                Menu.menuFinal();
+                Menu.menuFinal(1);
             } catch (Exception e) {
                 System.out.println("Ingrese valores correctos ");
                 entrada.nextLine();
-                Menu.menuFinal();
+                Menu.menuFinal(1);
             }
             
         }
     }
 
-    public static void calcularPalabras( ) {
+    /**
+     * Jugabilidad del ahorcado
+     */
+    public static void jugabilidad( ) {
 
         Ahorcado.pantallas(numerrores);
         espacios();
@@ -97,11 +119,14 @@ public class AhorcadoJugabilidad {
 
     }
 
+    /**
+     * Carga del uego y cantidad de repeticiones del mismo antes de perder
+     */
     public static void jugar( ) {
 
         while (numerrores < 8) {
 
-            calcularPalabras();
+            jugabilidad();
 
         }
 
@@ -109,7 +134,13 @@ public class AhorcadoJugabilidad {
             numerrores = 9;
             System.out.println("Perdiste");
             entrada.reset();
-            Menu.menuFinal();
+            Menu.menuFinal(1);
+        }
+    }
+
+    public static void opciones(){
+        if(palabraingresada == '*'){
+            Menu.menuIntermedio();
         }
     }
 

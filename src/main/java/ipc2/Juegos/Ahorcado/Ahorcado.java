@@ -1,7 +1,5 @@
 package ipc2.Juegos.Ahorcado;
 
-import java.util.Scanner;
-
 public class Ahorcado {
 
     public static String palabra;
@@ -13,7 +11,12 @@ public class Ahorcado {
 
    
 
-    public static void Jugador1(Scanner entrada) {
+    /**
+     * 
+     * Parte grafica del jugador 1
+     * 
+     */
+    public static void Jugador1() {
             System.out.println("");
             System.out.println("");
             System.out.println("***************Ahorcado***************");
@@ -26,6 +29,12 @@ public class Ahorcado {
         
     }
 
+    /**
+     * @param error
+     * 
+     * PArte grafica del juego en el jugador2
+     * 
+     */
     public static void pantallas(int error){
             System.out.println("");
             System.out.println("");
@@ -91,6 +100,7 @@ public class Ahorcado {
             
         }
         System.out.println("");
+        System.out.println("**Opciones(*)**");
         System.out.println("");
     }
         
