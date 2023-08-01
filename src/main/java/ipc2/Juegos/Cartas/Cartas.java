@@ -3,6 +3,8 @@ package ipc2.Juegos.Cartas;
 import java.util.Random;
 import java.util.Scanner;
 
+import ipc2.Menus.Menu;
+
 public class Cartas {
     public static class ApostarEntreCartasGame {
         private static int dinero_inicial ; // El valor lo ajusta el jugador desde main
@@ -78,7 +80,7 @@ public class Cartas {
             }
         }
 
-        //comienza el juego
+        //comienza el juegocondition
         public void startGame(int dinero) {
             Dinero_total_jugador = dinero;
             System.out.println("¡Bienvenido a Apostar entre Cartas!");
@@ -88,7 +90,19 @@ public class Cartas {
             }
 
             System.out.println("Te has quedado sin dinero. ¡Gracias por jugar!");
-            scanner.close();
+
+            System.out.println("");
+            System.out.println("*********************");
+            System.out.println("*      Perdiste     *");
+            System.out.println("*********************");
+            try {
+            scanner.nextLine();
+                Menu.menuFinal(3);
+            } catch (Exception e) {
+                System.out.println("Ingrese valores correctos ");
+            scanner.nextLine();
+                Menu.menuFinal(3);
+            }
         }
 
 

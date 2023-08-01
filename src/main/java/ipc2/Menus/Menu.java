@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import ipc2.Juegos.Ahorcado.Ahorcado;
 import ipc2.Juegos.Ahorcado.AhorcadoJugabilidad;
+import ipc2.Juegos.Basqueball.Basquetball;
 import ipc2.Juegos.Cartas.Cartas;
 
 public class Menu {
@@ -43,7 +44,9 @@ public class Menu {
                 AhorcadoJugabilidad.inicioAhorcado();
                 break;
             case 2:
+                entrada.reset();
                 System.out.println("*******Basquetball*******");
+                Basquetball.inicioBasquetball();
                 break;
             case 3:
                 System.out.println("*******Cartas*******");
@@ -69,9 +72,15 @@ public class Menu {
         System.out.println("1) Volver al Inicio");
         System.out.println("2) Salir.");
         System.out.println("Selecione entre 1-2");
+        try {
+            entrada.nextLine();
+            seleccion = entrada.nextInt();
+            opcionesSecundarias(seleccion);
+        } catch (Exception e) {
+            System.out.println("*******Ingrese Valores correctos********");
+            menuIntermedio();
+        }
         
-        seleccion = entrada.nextInt();
-        opcionesSecundarias(seleccion);
     }
     
      public static void opcionesSecundarias(int seleccion) {
@@ -81,6 +90,7 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("*******Saliendo*******");
+                System.exit(1);
                 break;
             default:
                 System.out.println("*******Ingrese Valores correctos********");
@@ -89,19 +99,19 @@ public class Menu {
         }
     }
 
-    public static void menuFinal() {
-        System.out.println("1) Volver a jugar");
-        System.out.println("2) Volver a elegir");
-        System.out.println("3) Salir");
-        System.out.println("Selecione entre 1-3");
+    public static void menuFinal(int seleccionar) {
+            System.out.println("1) Volver a jugar");
+            System.out.println("2) Volver a elegir");
+            System.out.println("3) Salir");
+            System.out.println("Selecione entre 1-3");
             Scanner entradanueva = new Scanner(System.in);
         try {
             seleccion = entradanueva.nextInt();
             entradanueva.nextLine();
-            opcionesFinales(seleccion);
+            opcionesFinales(seleccionar);
         } catch (Exception e) {
             System.out.println("*******Ingrese Valores correctos********");
-            menuFinal();
+            menuFinal(seleccionar);
         }
         entradanueva.close();
     }
@@ -118,6 +128,12 @@ public class Menu {
                     break;
                 }
                 if (juego == 3) {
+                        System.out.println("*******Cartas*******");
+                        Scanner scanner = new Scanner(System.in);
+                        Cartas.ApostarEntreCartasGame game = new Cartas.ApostarEntreCartasGame();
+                        System.out.println("Ingrese el dinero que tiene");
+                        int dineroJugador = scanner.nextInt();
+                        game.startGame(dineroJugador);
                     break;
                 }
                 System.out.println("*********Juego no existente***********");
@@ -131,7 +147,7 @@ public class Menu {
                 break;
             default:
                 System.out.println("*******Ingrese Valores correctos********");
-                menuFinal();
+                menuFinal(juego);
                 break;
         }
     }
