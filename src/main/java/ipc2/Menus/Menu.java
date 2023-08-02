@@ -28,6 +28,7 @@ public class Menu {
             entrada.nextLine();
             opcionesPrincipales(seleccion);
         } catch (Exception e) {
+            System.out.println("Error : " + e);
             System.out.println("Ingrese valores correctos");
             entrada.nextLine();
             menuInicio();
@@ -125,6 +126,7 @@ public class Menu {
                     break;
                 }
                 if (juego == 2) {
+                    Basquetball.inicioBasquetball();
                     break;
                 }
                 if (juego == 3) {

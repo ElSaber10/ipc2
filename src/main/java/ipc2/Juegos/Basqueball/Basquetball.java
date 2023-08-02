@@ -1,6 +1,8 @@
 package ipc2.Juegos.Basqueball;
 import java.util.Scanner;
 
+import ipc2.Menus.Menu;
+
 public class Basquetball {
 
 
@@ -22,13 +24,13 @@ public class Basquetball {
         
 
         // Puntua1es
-        int[] puntajes = new int[3];
+        int[] puntajes = new int[10];
         puntajes[1] = 0;
         puntajes[2] = 0;
 
         int jugadorActual = 1;
 
-        for (int turno = 0; turno < turnos; turno++) {
+        for (int turno = 0; turno < turnos*2; turno++) {
 
             if (turno % 2 == 1) {
                 jugadorActual = 2;
@@ -44,15 +46,16 @@ public class Basquetball {
 
             String tiro = "";
             String movimiento = "";
-
+            
             try {
                 System.out.println("Jugador " + jugadorActual + ", ¿qué tipo de tiro quieres hacer? (salto largo, salto corto o tiro libre) ");
                 tiro = scanner.next();
+                scanner.nextLine();                
+
 
                 System.out.println("Jugador " + jugadorActual + ", ¿qué tipo de movimiento de defensa quieres hacer? (cuerpo a cuerpo o fuerte) ");
-                scanner.nextLine();
                 movimiento = scanner.next();
-                
+
             } catch (Exception e) {
                  System.out.println("Error : " + e);
                  return;
@@ -94,7 +97,7 @@ public class Basquetball {
                     puntajes[jugadorActual] -= 1;
                 } else {
                     puntajes[jugadorActual] -= 2;
-                }
+                }           
             }
 
         int ganador = jugadorActual;
@@ -102,12 +105,17 @@ public class Basquetball {
             ganador = jugadorActual;
         } else {
             ganador = ganador + 1;
+            if (ganador>2) {
+                ganador = 2;
+            }
         }
 
         System.out.println("¡El ganador es elJugador : " + ganador + "!");
         
     }
 
+
+        Menu.menuFinal(2);
 
     }
 
